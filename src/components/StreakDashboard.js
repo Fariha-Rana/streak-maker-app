@@ -16,10 +16,10 @@ const Dashboard = ({ streakCount, habitData, userId }) => {
 
   const handleMarkStreak = async () => {
     const lastUpdateTime = new Date(streakCount.$updatedAt);
-    const beginningOfDay = setHours(startOfDay(lastUpdateTime), 0);
- 
+    const beginningOfDay = setHours(startOfDay(new Date()), 0); 
+    
     try {
-      if (isAfter(lastUpdateTime, beginningOfDay) && updatedStreakCount > 0) {
+      if (isAfter(beginningOfDay, lastUpdateTime) && updatedStreakCount > 0) {
         toast.info("✅Today's streak already mark. Come back tomorrow😎", {
           position: 'top-right',
           autoClose: 3000,

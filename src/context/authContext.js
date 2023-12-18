@@ -1,11 +1,11 @@
 "use client"
-import { createContext, useState, useLayoutEffect} from "react";
+import { createContext, useState, useEffect} from "react";
 import userAuth from "@/appwrite/authentication";
 export const AuthContext = createContext(null)
 
 export default function AuthProvider({children}) {
   const [authStatus, setAuthStatus] = useState(false);
-  useLayoutEffect(() => {
+  useEffect(() => {
     async function checkLogInStatus(){
      try{
       const isLogIn = await userAuth.isLoggedIn();

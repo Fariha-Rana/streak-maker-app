@@ -1,8 +1,8 @@
-'use client'
+"use client";
 import useGetUserData from "@/context/useGetUserData";
 import StreakForm from "@/components/CreateStreakForm";
 import Dashboard from "@/components/StreakDashboard";
-import { useState, useLayoutEffect } from "react";
+import { useState, useEffect } from "react";
 import { _getDocument, HABIT_COL_ID, STREAK_COL_ID } from "@/appwrite/database";
 import useAuth from "@/context/useAuth";
 import IntroPage from "@/components/IntroPage";
@@ -30,16 +30,20 @@ const Home = () => {
     }
   }
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     fetchData();
   }, [userData]);
 
   return (
     <>
-        <div className="flex justify-center items-center mt-19 h-96">
+      <div className="flex justify-center items-center mt-19 h-96">
         {authStatus && isExistingUser ? (
-          <Dashboard streakCount={streakCount} habitData={habitData} userId={id} />
-        ) : authStatus ? (
+          <Dashboard
+            streakCount={streakCount}
+            habitData={habitData}
+            userId={id}
+          />
+        ) : authStatus && !isExistingUser ? (
           <StreakForm fetchData={fetchData} />
         ) : (
           <IntroPage />

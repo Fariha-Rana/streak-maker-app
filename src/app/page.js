@@ -36,16 +36,14 @@ const Home = () => {
 
   return (
     <>
-      <div className="flex justify-center items-center mt-19 h-96">
-        {authStatus && !isExistingUser && <StreakForm fetchData={fetchData} />}
-        {isExistingUser && authStatus && (
-          <Dashboard
-            streakCount={streakCount}
-            habitData={habitData}
-            userId={id}
-          />
+        <div className="flex justify-center items-center mt-19 h-96">
+        {authStatus && isExistingUser ? (
+          <Dashboard streakCount={streakCount} habitData={habitData} userId={id} />
+        ) : authStatus ? (
+          <StreakForm fetchData={fetchData} />
+        ) : (
+          <IntroPage />
         )}
-        {!authStatus && <IntroPage />}
       </div>
     </>
   );

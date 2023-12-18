@@ -40,8 +40,9 @@ class UserAuth {
 
   async isLoggedIn() {
     try {
-      await this.getCurrentUser();
-      return true;
+      const _isloggedIn = await this.getCurrentUser();
+       if(_isloggedIn) return true;
+       else return false
     } catch (error) {
       return false;
     }

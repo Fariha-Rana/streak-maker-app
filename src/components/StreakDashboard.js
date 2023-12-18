@@ -20,7 +20,6 @@ const Dashboard = ({ streakCount, habitData, userId }) => {
  
     try {
       if (isAfter(lastUpdateTime, beginningOfDay)) {
-        console.log(isAfter(lastUpdateTime, beginningOfDay))
         toast.info("✅Today's streak already mark. Come back tomorrow😎", {
           position: 'top-right',
           autoClose: 3000,
@@ -67,6 +66,9 @@ const Dashboard = ({ streakCount, habitData, userId }) => {
         <p className="text-md lg:text:lg  md:text:lg font-bold mb-6">
           <i className="text-black">🎯Goal: </i>{" "}
           {habitData.name}
+        </p>
+        <p className="text-md font-semibold mb-4">
+          Come back tomorrow to update your streak!
         </p>
         <p className="lg:text-3xl  md:text-2xl  text-lg px-4 py-3 rounded-md border-blue-800 border-2 font-bold mb-2 text-gray-100700">
           # My Streak Count: {updatedStreakCount} days

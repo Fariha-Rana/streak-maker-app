@@ -2,7 +2,7 @@
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import useAuth from "@/context/useAuth";
-function signUplayout({ children }) {
+function SignUplayout({ children }) {
   const router = useRouter();
   const { authStatus} = useAuth();
   useEffect(() => {
@@ -16,4 +16,4 @@ function signUplayout({ children }) {
   );
 }
 
-export default signUplayout;
+export default SignUplayout;

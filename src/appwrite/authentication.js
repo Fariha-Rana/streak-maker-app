@@ -65,7 +65,7 @@ class UserAuth {
 
   async passwordRecovery(email) {
     try {
-      await account.createRecovery(email, 'http://localhost:3000/account/recoverypath');
+      await account.createRecovery(email, 'https://streak-maker-app-fariha-ranas-projects.vercel.app/account/recoverypath');
     } catch (error) {
       throw error;
     }

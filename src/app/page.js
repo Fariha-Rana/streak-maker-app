@@ -13,7 +13,7 @@ const Home = () => {
   const [habitData, setHabitData] = useState(null);
   const { authStatus } = useAuth();
   const { userData } = useGetUserData();
-  const id = userData?.$userId;
+  const id = userData?.$id;
 
   async function fetchData() {
     try {

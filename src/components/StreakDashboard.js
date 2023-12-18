@@ -1,11 +1,7 @@
 "use client";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import {
-  isAfter,
-  startOfDay,
-  setHours,
-} from "date-fns";
+import { isAfter, startOfDay, setHours, isBefore, endOfDay } from "date-fns";
 import { useState } from "react";
 import { _updateStreaks } from "@/appwrite/database";
 
@@ -15,20 +11,24 @@ const Dashboard = ({ streakCount, habitData, userId }) => {
   );
 
   const handleMarkStreak = async () => {
-    const lastUpdateTime = new Date(streakCount.$updatedAt);
-    const beginningOfDay = setHours(startOfDay(new Date()), 0); 
-    
+    const lastUpdateDate = new Date(streakCount.$updatedAt);
+    const startOfCurrentDay = startOfDay(new Date());
+
+    const isAfterStartOfDay = isAfter(startOfCurrentDay, lastUpdateDate);
+    const isBeforeEndOfDay = isBefore(lastUpdateDate, startOfCurrentDay);
+    const userCanUpdateName = isAfterStartOfDay && isBeforeEndOfDay;
+
     try {
-      if (isAfter(beginningOfDay, lastUpdateTime) && updatedStreakCount > 0) {
+      if (!userCanUpdateName && updatedStreakCount > 0) {
         toast.info("✅Today's streak already mark. Come back tomorrow😎", {
-          position: 'top-right',
+          position: "top-right",
           autoClose: 3000,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
           draggable: true,
         });
-        return
+        return;
       }
       setUpdatedStreakCount((prevStreakCount) => prevStreakCount + 1);
       toast.success("Congratulations! You completed one more day!🎉 🥳", {
@@ -60,12 +60,10 @@ const Dashboard = ({ streakCount, habitData, userId }) => {
     <section className="bg-blue-500 text-white mx-8 mt-16 p-8 rounded-md shadow-lg">
       <div className="mb-4">
         <p className="text-md lg:text:lg  md:text:lg  font-bold mb-6">
-          <i className="text-black">👀Habit Type: </i>{" "}
-          {habitData.type}
+          <i className="text-black">👀Habit Type: </i> {habitData.type}
         </p>
         <p className="text-md lg:text:lg  md:text:lg font-bold mb-6">
-          <i className="text-black">🎯Goal: </i>{" "}
-          {habitData.name}
+          <i className="text-black">🎯Goal: </i> {habitData.name}
         </p>
         <p className="text-md font-semibold mb-4">
           Come back tomorrow to update your streak!

@@ -19,7 +19,7 @@ export default function RootLayout({ children }) {
             <nav>
               <Navbar />
             </nav>
-            <main className="h-screen w-screen lg:w-full sm:w-screen bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-red-400 via-teal-100 to-cyan-900">{children}</main>
+            <main className="h-screen w-screen lg:max-w-screen-xl bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-red-400 via-teal-100 to-cyan-900">{children}</main>
           </UserDataProvider>
         </AuthProvider>
       </body>

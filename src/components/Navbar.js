@@ -19,7 +19,7 @@ const Navbar = () => {
                 </ul>
               </nav>
             </div>
-            <div className=" justify-end mt-4 pr-2 sm:flex-row lg:pr-0">
+            <div className=" justify-end mt-4 lg:mr-8 pr-2 sm:flex-row lg:pr-0">
               {authStatus ? (
                 <LogoutPage />
               ) : (

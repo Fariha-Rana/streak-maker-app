@@ -19,7 +19,7 @@ const Dashboard = ({ streakCount, habitData, userId }) => {
     const beginningOfDay = setHours(startOfDay(lastUpdateTime), 0);
  
     try {
-      if (isAfter(lastUpdateTime, beginningOfDay)) {
+      if (isAfter(lastUpdateTime, beginningOfDay) && updatedStreakCount > 0) {
         toast.info("✅Today's streak already mark. Come back tomorrow😎", {
           position: 'top-right',
           autoClose: 3000,

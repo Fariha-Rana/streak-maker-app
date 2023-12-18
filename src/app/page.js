@@ -2,7 +2,7 @@
 import useGetUserData from "@/context/useGetUserData";
 import StreakForm from "@/components/CreateStreakForm";
 import Dashboard from "@/components/StreakDashboard";
-import { useState, useEffect } from "react";
+import { useState, useLayoutEffect } from "react";
 import { _getDocument, HABIT_COL_ID, STREAK_COL_ID } from "@/appwrite/database";
 import useAuth from "@/context/useAuth";
 import IntroPage from "@/components/IntroPage";
@@ -30,7 +30,7 @@ const Home = () => {
     }
   }
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     fetchData();
   }, [userData]);
 

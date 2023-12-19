@@ -41,7 +41,7 @@ const Dashboard = ({ streakCount, habitData, userId, setStreakCount }) => {
       });
       const newStreakCount = { streakcount: updatedStreakCount + 1 };
       const data = await _updateStreaks(userId, newStreakCount);
-      setStreakCount((prevState) => [...prevState, data.streakcount]);
+      setStreakCount(data.streakcount);
     } catch (err) {
       setUpdatedStreakCount((prevStreakCount) =>
         Math.max(0, prevStreakCount - 1)

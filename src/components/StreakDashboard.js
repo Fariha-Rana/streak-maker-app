@@ -1,11 +1,11 @@
 "use client";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { isAfter, startOfDay, setHours, isBefore, endOfDay } from "date-fns";
+import { isAfter, startOfDay, isBefore} from "date-fns";
 import { useState } from "react";
 import { _updateStreaks } from "@/appwrite/database";
 
-const Dashboard = ({ streakCount, habitData, userId }) => {
+const Dashboard = ({ streakCount, habitData, userId, setStreakCount }) => {
   const [updatedStreakCount, setUpdatedStreakCount] = useState(
     streakCount.streakcount || 0
   );
@@ -40,7 +40,8 @@ const Dashboard = ({ streakCount, habitData, userId }) => {
         draggable: true,
       });
       const newStreakCount = { streakcount: updatedStreakCount + 1 };
-      await _updateStreaks(userId, newStreakCount);
+      const data = await _updateStreaks(userId, newStreakCount);
+      setStreakCount((prevState) => [...prevState, data.streakcount]);
     } catch (err) {
       setUpdatedStreakCount((prevStreakCount) =>
         Math.max(0, prevStreakCount - 1)

@@ -42,6 +42,7 @@ const Home = () => {
             streakCount={streakCount}
             habitData={habitData}
             userId={id}
+            setStreakCount={setStreakCount}
           />
         ) : authStatus && !isExistingUser ? (
           <StreakForm fetchData={fetchData} />
